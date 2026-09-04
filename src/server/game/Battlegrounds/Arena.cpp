@@ -282,6 +282,8 @@ void Arena::EndBattleground(uint32 winner)
             loserArenaTeam->NotifyStatsChanged();
         }
     }
+    else
+    {
         for (auto const& i : GetPlayers())
         {
             Player* player = _GetPlayer(i.first, i.second.OfflineRemoveTime != 0, "Arena::EndBattleground2");
