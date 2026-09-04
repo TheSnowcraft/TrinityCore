@@ -2099,7 +2099,7 @@ void Player::ResetAllPowers()
         case POWER_ENERGY:
             SetFullPower(POWER_ENERGY);
             break;
-            case POWER_FOCUS:
+        case POWER_FOCUS:
             SetFullPower(POWER_FOCUS);
             break;
         case POWER_RUNIC_POWER:
@@ -20651,7 +20651,7 @@ void Player::TextEmote(std::string_view text, WorldObject const* /*= nullptr*/, 
 
     WorldPackets::Chat::Chat packet;
     packet.Initialize(CHAT_MSG_EMOTE, LANG_UNIVERSAL, this, this, _text);
-    SendMessageToSetInRange(packet.Write(), sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_TEXTEMOTE), true, !GetSession()->HasPermission(rbac::RBAC_PERM_TWO_SIDE_INTERACTION_CHAT), true);
+    SendMessageToSetInRange(packet.Write(), sWorld->getFloatConfig(CONFIG_LISTEN_RANGE_TEXTEMOTE), true, false, true);
 }
 
 void Player::WhisperAddon(std::string const& text, Player* receiver)
