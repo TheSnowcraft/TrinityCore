@@ -9468,7 +9468,7 @@ void Unit::SetMaxPower(Powers power, uint32 val)
 
 uint32 Unit::GetCreatePowerValue(Powers power) const
 {
-    // Only hunter pets have POWER_FOCUS and POWER_HAPPINESS
+    // Only hunter pets have POWER_FOCUS
     switch (power)
     {
         case POWER_MANA:
@@ -9476,7 +9476,7 @@ uint32 Unit::GetCreatePowerValue(Powers power) const
         case POWER_RAGE:
             return 1000;
         case POWER_FOCUS:
-            return (GetTypeId() != TYPEID_UNIT || !ToCreature()->IsPet() || ToPet()->getPetType() != HUNTER_PET) ? 0 : 100;
+            return 100;
         case POWER_ENERGY:
             return 100;
         case POWER_HAPPINESS:
