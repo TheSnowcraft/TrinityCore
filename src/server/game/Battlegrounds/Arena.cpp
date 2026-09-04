@@ -282,6 +282,51 @@ void Arena::EndBattleground(uint32 winner)
             loserArenaTeam->NotifyStatsChanged();
         }
     }
+        for (auto const& i : GetPlayers())
+        {
+            Player* player = _GetPlayer(i.first, i.second.OfflineRemoveTime != 0, "Arena::EndBattleground2");
+            if (!player)
+                continue;
+            uint32 team = i.second.Team;
+            if (team == winner) // winner
+            {
+                switch (GetArenaType())
+                {
+                case ARENA_TYPE_2v2:
+                    player->ModifyHonorPoints(500);
+                    break;
+                case ARENA_TYPE_3v3:
+                    player->ModifyHonorPoints(550);
+                    break;
+                case ARENA_TYPE_5v5:
+                    player->ModifyHonorPoints(600);
+                    break;
+                default:
+                    TC_LOG_ERROR("arena.EndBattleground", "Unknown arena type: {}", GetArenaType());
+                    break;
+                }
+                player->AddItem(99998, 1);
+            }
+            else // loser
+            {
+                switch (GetArenaType())
+                {
+                case ARENA_TYPE_2v2:
+                    player->ModifyHonorPoints(250);
+                    break;
+                case ARENA_TYPE_3v3:
+                    player->ModifyHonorPoints(300);
+                    break;
+                case ARENA_TYPE_5v5:
+                    player->ModifyHonorPoints(350);
+                    break;
+                default:
+                    TC_LOG_ERROR("arena.EndBattleground", "Unknown arena type: {}", GetArenaType());
+                    break;
+                }
+            }
+        }
+    }
 
     // end battleground
     Battleground::EndBattleground(winner);
