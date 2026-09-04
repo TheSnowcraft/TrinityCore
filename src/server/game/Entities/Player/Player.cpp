@@ -23310,6 +23310,9 @@ float Player::GetReputationPriceDiscount(Creature const* creature) const
 
 float Player::GetReputationPriceDiscount(FactionTemplateEntry const* factionTemplate) const
 {
+    if (HasSpell(69044)) // Best Deals Anywhere
+        return 0.8f;
+
     if (!factionTemplate || !factionTemplate->Faction)
         return 1.0f;
 
@@ -23317,9 +23320,8 @@ float Player::GetReputationPriceDiscount(FactionTemplateEntry const* factionTemp
     if (rank <= REP_NEUTRAL)
         return 1.0f;
 
-    return 1.0f - 0.05f* (rank - REP_NEUTRAL);
+    return 1.0f - 0.05f * (rank - REP_NEUTRAL);
 }
-
 Player* Player::GetTrader() const
 {
     return m_trade ? m_trade->GetTrader() : nullptr;
