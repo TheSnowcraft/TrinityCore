@@ -533,8 +533,6 @@ public:
                     break;
             }
 
-            }
-
             return false;
         }
 
