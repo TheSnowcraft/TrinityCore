@@ -1899,7 +1899,7 @@ void WorldSession::HandleCharRaceOrFactionChangeCallback(std::shared_ptr<WorldPa
             uint16 zoneId = 0;
             if (newTeam == ALLIANCE)
             {
-                loc.WorldRelocate(0, -8867.68f, 673.373f, 97.9034f, 0.0f);
+                loc.WorldRelocate(726, -8867.68f, 673.373f, 97.9034f, 0.0f);
                 zoneId = 1519;
             }
             else
